@@ -1,0 +1,104 @@
+# FurryFandom status page — https://status.furryfandom.com
+#
+# This repository is PUBLIC. Keep internal architecture, hostnames, dependency
+# names and incident detail out of it — describe components by what a user
+# loses, never by what runs underneath.
+#
+# Docs: https://upptime.js.org/docs/configuration
+
+owner: FurryFandom-com
+repo: furryfandom-uptime
+
+# ---------------------------------------------------------------------------
+# What we probe
+# ---------------------------------------------------------------------------
+# Every URL here must be one that is already public, and must reveal nothing
+# beyond whether it responded. Never point this file at an internal or
+# diagnostic endpoint: whatever is listed below becomes public documentation of
+# what we run and where.
+sites:
+  - name: Website
+    url: https://furryfandom.com/
+    maxResponseTime: 5000
+    tags: [core]
+
+  - name: API
+    # A small, uncacheable public endpoint, so a green result means the
+    # application actually answered rather than an edge cache did.
+    url: https://furryfandom.com/api/conventions?limit=1
+    maxResponseTime: 3000
+    tags: [core]
+
+  - name: Messenger
+    url: https://messenger.furryfandom.com/
+    maxResponseTime: 5000
+    tags: [core]
+
+  - name: Real-time chat
+    # Verifies that a live message connection can be established. This proves
+    # the connection is accepted; it is not a full end-to-end delivery check.
+    url: wss://furryfandom.com/cable
+    check: ws
+    tags: [core]
+
+# Incidents open as GitHub issues and get assigned here.
+assignees:
+  - zortech
+
+# ---------------------------------------------------------------------------
+# Status website
+# ---------------------------------------------------------------------------
+status-website:
+  # DNS: status CNAME furryfandom-com.github.io, unproxied, so the status page
+  # does not depend on the same network path as the services it reports on.
+  cname: status.furryfandom.com
+  name: FurryFandom Status
+  introTitle: "Live and historical availability for FurryFandom."
+  introMessage: >-
+    Automated checks run every five minutes from GitHub's infrastructure,
+    independently of FurryFandom's own hosting. Payments are processed by
+    Stripe and traffic is served through Cloudflare — if those are degraded,
+    FurryFandom may be affected even when every check below is green.
+  navbar:
+    - title: Status
+      href: /
+    - title: Stripe
+      href: https://status.stripe.com
+      target: _blank
+    - title: Cloudflare
+      href: https://www.cloudflarestatus.com
+      target: _blank
+
+# The default footer is "This page is [open source]($REPO), powered by
+# [Upptime]", which advertises the backing repository on every page. Individual
+# incidents still carry their own "view and subscribe" link, which is where
+# someone actually needs it.
+i18n:
+  footer: "Powered by [Upptime](https://upptime.js.org)."
+
+# Keep our own README intro instead of Upptime's marketing blurb.
+skipPoweredByReadme: true
+# Repo description, topics and homepage are set by hand — updating them needs
+# permissions the workflow token deliberately does not have.
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
+skipHomepageUpdate: true
+
+commitMessages:
+  commitAuthorName: "FurryFandom Status Bot"
+  commitAuthorEmail: "73812536+upptime-bot@users.noreply.github.com"
+
+# ---------------------------------------------------------------------------
+# Notifications (not yet enabled)
+# ---------------------------------------------------------------------------
+# An outage currently opens a GitHub issue and nothing else — nobody is paged.
+# To send alerts to Telegram, add repository secrets
+# NOTIFICATION_TELEGRAM_BOT_KEY and NOTIFICATION_TELEGRAM_CHAT_ID, then:
+#
+# notifications:
+#   - type: telegram
+#     bot_key: $NOTIFICATION_TELEGRAM_BOT_KEY
+#     chat_id: $NOTIFICATION_TELEGRAM_CHAT_ID
+#
+# Note that a Telegram chat id changes if the group is ever converted to a
+# supergroup, and notifications then stop silently.

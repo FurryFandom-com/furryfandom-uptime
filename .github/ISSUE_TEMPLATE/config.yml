@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a problem with FurryFandom
+    url: https://furryfandom.com/support
+    about: This repository only tracks automated uptime checks. For help with your account, an order, or a commission, contact support.
