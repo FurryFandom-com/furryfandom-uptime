@@ -1,0 +1,45 @@
+# TEMPORARY: verifies the Telegram notification secrets actually work.
+# Delete this workflow once the alert path is confirmed.
+name: Notification Test
+on:
+  workflow_dispatch:
+jobs:
+  telegram:
+    name: Send a test alert
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Send to Telegram
+        env:
+          BOT_KEY: ${{ secrets.NOTIFICATION_TELEGRAM_BOT_KEY }}
+          CHAT_IDS: ${{ secrets.NOTIFICATION_TELEGRAM_CHAT_ID }}
+          ENABLED: ${{ secrets.NOTIFICATION_TELEGRAM }}
+        run: |
+          set -u
+          # Upptime gates on NOTIFICATION_TELEGRAM *and* the bot key. Mirror that
+          # check so this test fails for the same reason the real path would.
+          if [ -z "${ENABLED}" ]; then echo "::error::NOTIFICATION_TELEGRAM is empty — Upptime would skip Telegram silently"; exit 1; fi
+          if [ -z "${BOT_KEY}" ]; then echo "::error::NOTIFICATION_TELEGRAM_BOT_KEY is empty"; exit 1; fi
+          if [ -z "${CHAT_IDS}" ]; then echo "::error::NOTIFICATION_TELEGRAM_CHAT_ID is empty"; exit 1; fi
+
+          rc=0
+          IFS=','
+          for chat in ${CHAT_IDS}; do
+            chat="$(echo "$chat" | tr -d '[:space:]')"
+            # The token is in the URL, so never echo the URL or use -v.
+            body=$(curl -sS --max-time 20 \
+              -X POST "https://api.telegram.org/bot${BOT_KEY}/sendMessage" \
+              -H 'Content-Type: application/json' \
+              -d "$(printf '{"chat_id":"%s","parse_mode":"HTML","disable_web_page_preview":true,"text":"<b>FurryFandom Status</b>%%0AConnectivity test from the uptime repository. Alerting is wired up correctly. No action needed."}' "$chat")" \
+              2>/dev/null) || true
+
+            ok=$(echo "$body" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("ok"))' 2>/dev/null || echo "parse-failed")
+            if [ "$ok" = "True" ]; then
+              echo "✅ delivered to chat ${chat}"
+            else
+              code=$(echo "$body" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("error_code"), d.get("description"))' 2>/dev/null || echo "unparseable response")
+              echo "::error::Telegram rejected chat ${chat}: ${code}"
+              rc=1
+            fi
+          done
+          exit $rc
