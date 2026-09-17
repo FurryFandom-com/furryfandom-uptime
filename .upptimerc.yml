@@ -92,13 +92,24 @@ commitMessages:
 # Notifications (not yet enabled)
 # ---------------------------------------------------------------------------
 # An outage currently opens a GitHub issue and nothing else — nobody is paged.
-# To send alerts to Telegram, add repository secrets
-# NOTIFICATION_TELEGRAM_BOT_KEY and NOTIFICATION_TELEGRAM_CHAT_ID, then:
 #
-# notifications:
-#   - type: telegram
-#     bot_key: $NOTIFICATION_TELEGRAM_BOT_KEY
-#     chat_id: $NOTIFICATION_TELEGRAM_CHAT_ID
+# Notifications are configured ENTIRELY through repository secrets. There is no
+# `notifications:` block to add here: the key exists in Upptime's TypeScript
+# interface but no code reads it, so adding one is a silent no-op.
+#
+# For Telegram, add three repository secrets (Settings -> Secrets and variables
+# -> Actions):
+#
+#   NOTIFICATION_TELEGRAM            any non-empty value — this is the on switch
+#   NOTIFICATION_TELEGRAM_BOT_KEY    bot token from @BotFather
+#   NOTIFICATION_TELEGRAM_CHAT_ID    target chat; comma-separate for several
+#
+# All three are already wired into uptime.yml's SECRETS_CONTEXT, so no workflow
+# edit is needed. Setting only two of them fails silently: the send is gated on
+# NOTIFICATION_TELEGRAM *and* NOTIFICATION_TELEGRAM_BOT_KEY both being present.
+#
+# Optional: NOTIFICATIONS_DOWN_MESSAGE / NOTIFICATIONS_UP_MESSAGE override the
+# default alert text.
 #
 # Note that a Telegram chat id changes if the group is ever converted to a
-# supergroup, and notifications then stop silently.
+# supergroup, and alerts then stop silently.
