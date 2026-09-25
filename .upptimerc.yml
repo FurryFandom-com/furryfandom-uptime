@@ -41,6 +41,17 @@ sites:
     check: ws
     tags: [core]
 
+  - name: Chat service
+    # Whether the chat service can process messages. Up or down only.
+    url: https://furryfandom.com/api/status/realtime
+    maxResponseTime: 5000
+    tags: [core]
+
+  - name: Search
+    # Whether search can answer queries. Up or down only.
+    url: https://furryfandom.com/api/status/search
+    maxResponseTime: 5000
+
 # Incidents open as GitHub issues and get assigned here.
 assignees:
   - zortech
