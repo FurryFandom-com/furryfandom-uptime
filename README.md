@@ -26,12 +26,14 @@ GitHub Issues for incidents, GitHub Pages for the page.
 
 ## What is monitored
 
-| Component      | What it covers                                              |
-| -------------- | ----------------------------------------------------------- |
-| Website        | The main site at furryfandom.com                            |
-| API            | The application behind the site                             |
-| Messenger      | The messenger at messenger.furryfandom.com                  |
-| Real-time chat | The live connection that delivers messages as they are sent |
+| Component      | What it covers                                                   |
+| -------------- | ---------------------------------------------------------------- |
+| Website        | The main site at furryfandom.com                                 |
+| API            | The application behind the site                                  |
+| Messenger      | The messenger at messenger.furryfandom.com                       |
+| Real-time chat | Whether the messenger can open its live connection               |
+| Chat service   | Whether the chat service can process messages right now          |
+| Search         | Whether search across the site can answer queries right now      |
 
 Checks run every five minutes. Response times are recorded over time and
 charted on the status page.
