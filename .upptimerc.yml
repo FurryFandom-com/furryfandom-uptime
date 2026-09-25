@@ -34,15 +34,20 @@ sites:
     maxResponseTime: 5000
     tags: [core]
 
-  - name: Real-time chat
-    # Verifies that a live message connection can be established. This proves
-    # the connection is accepted; it is not a full end-to-end delivery check.
+  - name: Live updates
+    # Whether new messages can appear without a refresh: verifies that a live
+    # message connection can be established. This proves the connection is
+    # accepted; it is not a full end-to-end delivery check.
+    # slug pinned so the rename keeps this component's history.
+    slug: real-time-chat
     url: wss://furryfandom.com/cable
     check: ws
     tags: [core]
 
-  - name: Chat service
-    # Whether the chat service can process messages. Up or down only.
+  - name: Message sending
+    # Whether messages can be sent and chats opened. Up or down only.
+    # slug pinned so the rename keeps this component's history.
+    slug: chat-service
     url: https://furryfandom.com/api/status/realtime
     maxResponseTime: 5000
     tags: [core]
