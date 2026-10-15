@@ -11,7 +11,7 @@
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
     "time": 574,
-    "timeDay": 560,
+    "timeDay": 558,
     "timeWeek": 470,
     "timeMonth": 574,
     "timeYear": 574,
@@ -28,11 +28,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 546,
-    "timeDay": 672,
-    "timeWeek": 475,
-    "timeMonth": 546,
-    "timeYear": 546,
+    "time": 545,
+    "timeDay": 532,
+    "timeWeek": 483,
+    "timeMonth": 545,
+    "timeYear": 545,
     "dailyMinutesDown": {}
   },
   {
@@ -46,11 +46,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 490,
-    "timeDay": 546,
-    "timeWeek": 401,
-    "timeMonth": 490,
-    "timeYear": 490,
+    "time": 489,
+    "timeDay": 485,
+    "timeWeek": 408,
+    "timeMonth": 489,
+    "timeYear": 489,
     "dailyMinutesDown": {}
   },
   {
@@ -59,18 +59,19 @@
     "icon": "https://icons.duckduckgo.com/ip3/furryfandom.com.ico",
     "slug": "real-time-chat",
     "status": "down",
-    "uptime": "100.00%",
-    "uptimeDay": "99.99%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "100.00%",
-    "uptimeYear": "100.00%",
+    "uptime": "96.61%",
+    "uptimeDay": "6.74%",
+    "uptimeWeek": "86.68%",
+    "uptimeMonth": "96.61%",
+    "uptimeYear": "96.61%",
     "time": 0,
     "timeDay": 0,
     "timeWeek": 0,
     "timeMonth": 0,
     "timeYear": 0,
     "dailyMinutesDown": {
-      "2026-10-14": 0
+      "2026-10-15": 246,
+      "2026-10-14": 1097
     }
   },
   {
@@ -84,11 +85,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 279,
-    "timeDay": 355,
-    "timeWeek": 247,
-    "timeMonth": 279,
-    "timeYear": 279,
+    "time": 285,
+    "timeDay": 419,
+    "timeWeek": 270,
+    "timeMonth": 285,
+    "timeYear": 285,
     "dailyMinutesDown": {}
   },
   {
@@ -102,11 +103,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 217,
-    "timeDay": 374,
-    "timeWeek": 221,
-    "timeMonth": 217,
-    "timeYear": 217,
+    "time": 223,
+    "timeDay": 338,
+    "timeWeek": 219,
+    "timeMonth": 223,
+    "timeYear": 223,
     "dailyMinutesDown": {}
   }
 ]
